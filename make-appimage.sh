@@ -7,8 +7,8 @@ export ARCH
 export OUTPATH=./dist
 export ADD_HOOKS="self-updater.hook"
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
-export ICON=/opt/simplex/lib/simplex-simplex.desktop # weirdest place to have a desktop entry lol
-export DESKTOP=/opt/simplex/lib/simplex.png
+export ICON=/opt/simplex/lib/simplex.png
+export DESKTOP=/opt/simplex/lib/simplex-simplex.desktop # weirdest place to have a desktop entry lol
 export DEPLOY_OPENGL=1
 
 # Deploy dependencies

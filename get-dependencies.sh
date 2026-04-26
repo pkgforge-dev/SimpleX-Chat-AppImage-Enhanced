@@ -15,12 +15,16 @@ get-debloated-pkgs --add-common --prefer-nano
 # Comment this out if you need an AUR package
 #make-aur-package PACKAGENAME
 
-# If the application needs to be manually built that has to be done down here
+echo "Getting binary..."
+echo "---------------------------------------------------------------"
+deb=https://github.com/simplex-chat/simplex-chat/releases/latest/download/simplex-desktop-ubuntu-24_04-$ARCH.deb
+if ! wget --retry-connrefused --tries=30 "$deb" -O /tmp/temp.deb 2>/tmp/download.log; then
+	cat /tmp/download.log
+	exit 1
+fi
+ar xvf /tmp/temp.deb
+tar -xvf ./data.tar.zst
+rm -f ./*.zst /tmp/temp.deb
+cp -rv ./opt/simplex /opt
 
-# if you also have to make nightly releases check for DEVEL_RELEASE = 1
-#
-# if [ "${DEVEL_RELEASE-}" = 1 ]; then
-# 	nightly build steps
-# else
-# 	regular build steps
-# fi
+awk -F'/' '/Location:/{print $(NF-1); exit}' /tmp/download.log > ~/version

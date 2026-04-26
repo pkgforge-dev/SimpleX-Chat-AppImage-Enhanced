@@ -15,10 +15,7 @@ export DEPLOY_OPENGL=1
 quick-sharun \
 	/opt/simplex/bin/simplex \
 	/opt/simplex/lib/*.so*   \
-	/opt/simplex/lib/app     \
-	/opt/simplex/lib/runtime
-
-# Additional changes can be done in between here
+	/opt/simplex/lib
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage

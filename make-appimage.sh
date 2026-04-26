@@ -20,6 +20,13 @@ quick-sharun \
 cp ./AppDir/lib/simplex/lib/libapplauncher.so ./AppDir/lib
 rm -rf ./AppDir/lib/simplex
 
+# this app ships its own libcrypto.so.3
+# remove the one from archlinux so that this does not crash
+f=./AppDir/shared/lib/app/resources/vlc/libcrypto.so.3
+if [ -f "$f" ]; then
+	rm -f ./AppDir/lib/"${f##*/}"
+fi
+
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
 
